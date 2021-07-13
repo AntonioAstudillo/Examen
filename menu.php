@@ -1,3 +1,20 @@
+<?php
+
+ require_once 'auxiliares/Consultas.php';
+
+ $objetoConsultas = new Consultas();
+
+ $resultEmpleados = $objetoConsultas->leerTodos();
+ $resultEmpresas = $objetoConsultas->leerEmpresa();
+ $resultDepartamento = $objetoConsultas->leerDepartamento();
+
+
+if(!$resultEmpleados && !$resultEmpresas && !$resultDepartamento){
+   die("Error:1");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
    <head>
@@ -13,11 +30,13 @@
    <body>
       <!-- AQUI IRA EL BUSCADOR -->
       <header class="container-fluid p-0">
-         <div class="d-flex justify-content-between inline-block header">
+         <div class="d-flex justify-content-between header p-0 aling-items-baseline">
+
             <div class="p-0 mt-2">
                <p class="text-white font-weight-bold logo">Examen</p>
             </div>
-            <div class="row p-0 mt-2">
+
+            <div class="row p-0 mt-2 d-flex justify-content-end aling-items-baseline">
                <div class="col-5 p-0 mr-1">
                   <select  class="form-control" name="">
                      <option value="">Elige una Opción</option>
@@ -26,9 +45,11 @@
                      <option value="">Nombre</option>
                   </select>
                </div>
+
                <div class="col-3 p-0 mr-1">
                   <input class="form-control" type="text" id="buscador" placeholder="Buscar...">
                </div>
+
                <div class="col-3 p-0 mr-1">
                   <button class="btn btn-primary" type="button" name="button"><i class="fas fa-search"></i></button>
                </div>
@@ -36,45 +57,68 @@
          </div>
       </header>
 
+      <div class="container">
+         <div class="row mt-4">
+            <div class="col-6">
+               <select class="form-control" name="">
+                  <option value="">Elige una empresa</option>
+                  <?php while($empresa = $resultEmpresas->fetch_assoc()): ?>
+                     <option value="<?php echo $empresa['nombre']; ?>"><?php echo $empresa['nombre']; ?></option>
+                  <?php endwhile; ?>
+               </select>
+
+            </div>
+
+            <div class="col-6">
+               <select class="form-control" name="">
+                  <option value="">Elige un departamento</option>
+                  <?php while($departamento = $resultDepartamento->fetch_assoc()): ?>
+                     <option value="<?php echo $departamento['nombre']; ?>"><?php echo $departamento['nombre']; ?></option>
+                  <?php endwhile; ?>
+               </select>
+
+            </div>
+         </div>
+      </div>
+
+
       <!-- AQUI IRA LA TABLA CON LOS USUARIOS -->
 
-      <div class="container-fluid p-0">
-         <table class="table table-striped table-bordered">
+      <div class="container p-0">
+         <table class="table table-striped table-bordered mt-4">
             <thead class="thead encabezado_tabla">
                <!-- Encabezados -->
                <tr class="text-center">
                   <th>Id</th>
                   <th>Nombre</th>
-                  <th>Apellido Materno</th>
-                  <th>Apellido Paterno</th>
                   <th>Fecha Nacimiento</th>
                   <th>Correo</th>
                   <th>Género</th>
-                  <th>Teléfono</th>
                   <th>Celular</th>
                   <th>Fecha de Ingreso</th>
                   <th>Acciones</th>
                </tr>
             </thead>
             <tbody>
-               <tr class="text-center">
-                  <td>1</td>
-                  <td>Antonio</td>
-                  <td>Astudillo</td>
-                  <td>Jaimes</td>
-                  <td>29/12/1994</td>
-                  <td>antonio@gmail.com</td>
-                  <td>M</td>
-                  <td>No tiene</td>
-                  <td>3329283921</td>
-                  <td>10/07/2021</td>
-                  <td rowspan="2">
-                     <i id="editar" class="text-warning lead far fa-edit "></i>
-                     <i id="eliminar" class="text-danger lead far fa-trash-alt"></i></td>
-               </tr>
+               <?php while($empleado = $resultEmpleados->fetch_assoc()): ?>
+                  <tr class="text-center">
+                     <td><?php echo $empleado['idEmpleado']; ?></td>
+                     <td><?php echo $empleado['nombre'].' '.$empleado['apellidoPaterno'] .' '.$empleado['apellidoMaterno']; ?> </td>
+                     <td><?php echo $empleado['fechaNacimiento']; ?></td>
+                     <td><?php echo $empleado['correo']; ?></td>
+                     <td><?php echo $empleado['genero']; ?></td>
+                     <td><?php echo $empleado['celular']; ?>1</td>
+                     <td><?php echo $empleado['fechaIngreso']; ?></td>
+                     <td><i id="editar"  value='<?php echo $empleado['idEmpleado']; ?>' class="text-warning lead far fa-edit "></i>
+                         <i id="eliminar"  value='<?php echo $empleado['idEmpleado']; ?>' class="text-danger lead far fa-trash-alt"></i>
+                     </td>
+                  </tr>
+               <?php endwhile; ?>
             </tbody>
          </table>
       </div>
+
+      <!-- <footer class="bg-black">Derechos Reservados copyright &copy</footer> -->
 
       <script src="js/script.js" charset="utf-8"></script>
    </body>

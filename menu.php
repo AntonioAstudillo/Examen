@@ -60,7 +60,7 @@ if(!$resultEmpleados && !$resultEmpresas && !$resultDepartamento){
       <div class="container">
          <div class="row mt-4">
             <div class="col-6">
-               <select class="form-control" name="">
+               <select id="empresaSelect" class="form-control" name="">
                   <option value="">Elige una empresa</option>
                   <?php while($empresa = $resultEmpresas->fetch_assoc()): ?>
                      <option value="<?php echo $empresa['nombre']; ?>"><?php echo $empresa['nombre']; ?></option>
@@ -70,11 +70,11 @@ if(!$resultEmpleados && !$resultEmpresas && !$resultDepartamento){
             </div>
 
             <div class="col-6">
-               <select class="form-control" name="">
+               <select id="departamentos" class="form-control" name="">
                   <option value="">Elige un departamento</option>
-                  <?php while($departamento = $resultDepartamento->fetch_assoc()): ?>
+                  <!-- <?php while($departamento = $resultDepartamento->fetch_assoc()): ?>
                      <option value="<?php echo $departamento['nombre']; ?>"><?php echo $departamento['nombre']; ?></option>
-                  <?php endwhile; ?>
+                  <?php endwhile; ?> -->
                </select>
 
             </div>

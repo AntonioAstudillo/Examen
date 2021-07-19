@@ -33,25 +33,25 @@ if(!$resultEmpleados && !$resultEmpresas && !$resultDepartamento){
          <div class="d-flex justify-content-between header p-0 aling-items-baseline">
 
             <div class="p-0 mt-2">
-               <p class="text-white font-weight-bold logo">Examen</p>
+               <p class="text-white font-weight-bold logo"><a href="menu.php">Examen</a>   </p>
             </div>
 
             <div class="row p-0 mt-2 d-flex justify-content-end aling-items-baseline">
                <div class="col-5 p-0 mr-1">
-                  <select  class="form-control" name="">
-                     <option value="">Elige una Opción</option>
-                     <option value="">Empresa</option>
-                     <option value="">Departamento</option>
-                     <option value="">Nombre</option>
+                  <select id="opcionBusqueda" class="form-control" name="">
+                     <option value="opcion">Elige una Opción</option>
+                     <option value="empresa">Empresa</option>
+                     <option value="departamento">Departamento</option>
+                     <option value="nombre">Nombre</option>
                   </select>
                </div>
 
                <div class="col-3 p-0 mr-1">
-                  <input class="form-control" type="text" id="buscador" placeholder="Buscar...">
+                  <input class="form-control" type="text" id="buscadorText" placeholder="Buscar...">
                </div>
 
                <div class="col-3 p-0 mr-1">
-                  <button class="btn btn-primary" type="button" name="button"><i class="fas fa-search"></i></button>
+                  <button class="btn btn-primary" type="button" name="button" id="buscador"><i class="fas fa-search"></i></button>
                </div>
             </div>
          </div>
@@ -72,9 +72,6 @@ if(!$resultEmpleados && !$resultEmpresas && !$resultDepartamento){
             <div class="col-6">
                <select id="departamentos" class="form-control" name="">
                   <option value="">Elige un departamento</option>
-                  <!-- <?php while($departamento = $resultDepartamento->fetch_assoc()): ?>
-                     <option value="<?php echo $departamento['nombre']; ?>"><?php echo $departamento['nombre']; ?></option>
-                  <?php endwhile; ?> -->
                </select>
 
             </div>
@@ -93,24 +90,23 @@ if(!$resultEmpleados && !$resultEmpresas && !$resultDepartamento){
                   <th>Nombre</th>
                   <th>Fecha Nacimiento</th>
                   <th>Correo</th>
-                  <th>Género</th>
                   <th>Celular</th>
                   <th>Fecha de Ingreso</th>
                   <th>Acciones</th>
                </tr>
             </thead>
-            <tbody>
+            <tbody id="cuerpoTabla">
                <?php while($empleado = $resultEmpleados->fetch_assoc()): ?>
                   <tr class="text-center">
                      <td><?php echo $empleado['idEmpleado']; ?></td>
                      <td><?php echo $empleado['nombre'].' '.$empleado['apellidoPaterno'] .' '.$empleado['apellidoMaterno']; ?> </td>
                      <td><?php echo $empleado['fechaNacimiento']; ?></td>
                      <td><?php echo $empleado['correo']; ?></td>
-                     <td><?php echo $empleado['genero']; ?></td>
                      <td><?php echo $empleado['celular']; ?>1</td>
                      <td><?php echo $empleado['fechaIngreso']; ?></td>
-                     <td><i id="editar"  value='<?php echo $empleado['idEmpleado']; ?>' class="text-warning lead far fa-edit "></i>
-                         <i id="eliminar"  value='<?php echo $empleado['idEmpleado']; ?>' class="text-danger lead far fa-trash-alt"></i>
+                     <td>
+                        <i id="editar"  value='<?php echo $empleado['idEmpleado']; ?>' class="text-warning lead far fa-edit"></i>
+                        <i id="eliminar"  value='<?php echo $empleado['idEmpleado']; ?>' class="text-danger lead far fa-trash-alt"></i>
                      </td>
                   </tr>
                <?php endwhile; ?>

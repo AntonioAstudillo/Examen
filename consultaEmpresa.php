@@ -29,7 +29,6 @@ if($resultado){
    die();
 }
 
-
 echo json_encode($respuesta);
 
 

@@ -5,7 +5,11 @@ var buscador = document.getElementById('buscador');
 var departamentos = document.getElementById('departamentos');
 var peticion = new XMLHttpRequest();
 var peticionHttp , peticionDepartamentos , peticionChange;
+var aceptarDel = document.getElementById('aceptarDel');
 
+aceptarDel.addEventListener('click',function(){
+   location.reload();
+})
 empresas.addEventListener('change',crearDepartamentos);
 buscador.addEventListener('click',buscarUsuario);
 departamentos.addEventListener('change',buscarDepartamentos);
@@ -124,17 +128,18 @@ function buscar(){
 function mensaje(){
 
    let valor;
+   valor = this.getAttribute('value');
+   valor = "id="+valor;
 
   if(this.getAttribute('id') == 'eliminar')
-  {
-      valor = this.getAttribute('value');
-      valor = "id="+valor;
-
+  {   
       peticionChange = new XMLHttpRequest();
       peticionChange.onreadystatechange = banderaChange;
       peticionChange.open('POST','eliminar.php');
       peticionChange.setRequestHeader('Content-type','application/x-www-form-urlencoded');
       peticionChange.send(valor);
+   }else{
+      window.location.href = 'editar.php?'+valor;
    }
 
 }
@@ -144,10 +149,7 @@ function banderaChange(){
    {
       if(peticionChange.status == 200)
       {
-         if(peticionChange.responseText == 'TRUE'){
-            alert("El empleado se elimino con éxito");
-            location.reload();
-         }else{
+         if(peticionChange.responseText == 'FALSE'){
             alert("Hubo un problema al eliminar");
          }
       }

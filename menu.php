@@ -2,11 +2,24 @@
 
  require_once 'auxiliares/Consultas.php';
 
- $objetoConsultas = new Consultas();
+ if(isset($_GET['pag'])){
+    $pagina = $_GET['pag'];
+ }else{
+    $pagina = 1;
+ }
 
- $resultEmpleados = $objetoConsultas->leerTodos();
+  $numElementos = 8;
+
+ $objetoConsultas = new Consultas();
+ $resultadoMaximo = $objetoConsultas->contarEmpleados();
+ $resultEmpleados = $objetoConsultas->leerTodos($pagina , $numElementos);
  $resultEmpresas = $objetoConsultas->leerEmpresa();
  $resultDepartamento = $objetoConsultas->leerDepartamento();
+
+ //codigo de paginador
+
+
+
 
 
 if(!$resultEmpleados && !$resultEmpresas && !$resultDepartamento){
@@ -78,9 +91,7 @@ if(!$resultEmpleados && !$resultEmpresas && !$resultDepartamento){
          </div>
       </div>
 
-
       <!-- AQUI IRA LA TABLA CON LOS USUARIOS -->
-
       <div class="container p-0">
          <table class="table table-striped table-bordered mt-4">
             <thead class="thead encabezado_tabla">
@@ -106,16 +117,65 @@ if(!$resultEmpleados && !$resultEmpresas && !$resultDepartamento){
                      <td><?php echo $empleado['fechaIngreso']; ?></td>
                      <td>
                         <i id="editar"  value='<?php echo $empleado['idEmpleado']; ?>' class="text-warning lead far fa-edit"></i>
-                        <i id="eliminar"  value='<?php echo $empleado['idEmpleado']; ?>' class="text-danger lead far fa-trash-alt"></i>
+                        <i data-toggle="modal" data-target="#modal1" id="eliminar"  value='<?php echo $empleado['idEmpleado']; ?>' class="text-danger lead far fa-trash-alt"></i>
                      </td>
                   </tr>
                <?php endwhile; ?>
             </tbody>
          </table>
+
+
+
+         <!-- BLOQUE DE PAGINACION -->
+         <nav aria-label="Page navigation example">
+            <ul class="pagination">
+            <?php if(isset($_GET['pag'])): ?>
+               <?php if($_GET['pag']>1): ?>
+                  <li class="page-item"><a class="page-link" href="index.php?pag=<?php echo $_GET['pag']-1; ?>">Anterior</a></li>
+               <?php else: ?>
+                  <li class="page-item">Anterior</li>
+               <?php endif; ?>
+            <?php else: ?>
+               <li class="page-item">Anterior</li>
+            <?php endif; ?>
+
+            <?php if(isset($_GET['pag'])): ?>
+               <?php if(($pagina * $numElementos)<$resultadoMaximo ): ?>
+                  <li class="page-item"><a class="page-link" href="menu.php?pag=<?php echo $_GET['pag'] + 1 ?>">Siguiente</a></li>
+               <?php else: ?>
+                  <li class="page-item">Siguiente</li>
+               <?php endif; ?>
+            <?php else: ?>
+               <li class="page-item"><a class="page-link" href="menu.php?pag=2">Siguiente</a></li>
+            <?php endif; ?>
+            </ul>
+         </nav>
       </div>
 
-      <!-- <footer class="bg-black">Derechos Reservados copyright &copy</footer> -->
 
+      <!-- CREAMOS EL MODAL DE EDICION EL CUAL SERÁ UN FORMULARIO -->
+      <div class="modal" tabindex="-1" role="dialog" id="modal1">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title">Elimando Empleados</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <p>El registro fue eliminado de forma correcta</p>
+               </div>
+               <div class="modal-footer">
+                  <button id="aceptarDel" type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- <footer class="bg-black">Derechos Reservados copyright &copy</footer> -->
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
       <script src="js/script.js" charset="utf-8"></script>
    </body>
 </html>

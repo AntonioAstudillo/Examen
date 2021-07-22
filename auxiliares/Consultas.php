@@ -13,9 +13,22 @@ class Consultas{
    public function __destruct(){
       $this->conexion->close();
    }
+
+   public function contarEmpleados(){
+      $consulta = "SELECT COUNT(*) FROM empleado";
+
+      $resultado = $this->conexion->query($consulta);
+
+      $resultadoMaximo = $resultado->fetch_assoc();
+
+      return $resultadoMaximo;
+
+   }
+
    //Este metodo me va a leer todos los registros de la tabla Empleados
-   public function leerTodos(){
-      $consulta = "SELECT * FROM empleado;";
+   public function leerTodos($pagina , $numElementos){
+      $consulta = "SELECT * FROM empleado LIMIT " . (($pagina-1) *$numElementos). ",". $numElementos;
+
       $resultado = $this->conexion->query($consulta);
 
       if($resultado){

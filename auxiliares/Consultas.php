@@ -80,12 +80,49 @@ class Consultas{
 
    }
 
+   public function leerEmpleado($id){
+      $sql = "SELECT * FROM empleado WHERE idEmpleado = $id";
+
+      $resultado = $this->conexion->query($sql);
+
+      if($resultado){
+         $resultado = $resultado->fetch_assoc();
+         return $resultado;
+      }else{
+         return false;
+      }
+   }
+
    public function eliminarEmpleado($id){
       $sql = "DELETE FROM empleado WHERE idEmpleado = $id";
 
       $resultado = $this->conexion->query($sql);
 
       if($this->conexion->affected_rows > 0){
+         return true;
+      }else{
+         return false;
+      }
+   }
+
+   public function actualizarEmpleado ($id , $nombre , $apellidoP , $apellidoM , $correo , $telefono , $fechaN , $celular){
+      $sql = "UPDATE empleado SET nombre = '$nombre' , apellidoMaterno = '$apellidoM' , correo = '$correo', fechaNacimiento = '$fechaN' , telefono = '$telefono' , celular = '$celular' WHERE idEmpleado = $id ";
+
+      $resultado = $this->conexion->query($sql);
+
+      if($this->conexion->affected_rows > 0){
+         return true;
+      }else{
+         return false;
+      }
+   }
+
+   public function buscarUsuario($nombre , $password){
+      $sql = "SELECT * FROM usuarios WHERE nombre = '$nombre' AND pass = '$password'; ";
+
+      $resultado = $this->conexion->query($sql);
+
+      if($resultado->num_rows != 0){
          return true;
       }else{
          return false;

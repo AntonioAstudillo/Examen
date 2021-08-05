@@ -18,10 +18,6 @@
 
  //codigo de paginador
 
-
-
-
-
 if(!$resultEmpleados && !$resultEmpresas && !$resultDepartamento){
    die("Error:1");
 }

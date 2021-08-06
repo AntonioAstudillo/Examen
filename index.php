@@ -12,7 +12,7 @@
 </head>
 <body>
    <div class="container contenedor border p-5">
-      <form class="" action="validarUsuario.php" method="post">
+      <form class="" action="" method="post">
          <h1 class="text-info text-center mb-3">Bienvenido</h1>
          <div class="input-group mb-2">
             <div class="input-group-prepend">

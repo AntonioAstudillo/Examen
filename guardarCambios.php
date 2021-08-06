@@ -26,10 +26,10 @@ if(isset($_POST))
 
    if($resultado){
       echo "Los cambios se actualizaron con exito";
-      header("Refresh:3; url=index.php");
+      header("Refresh:3; url=menu.php");
    }else{
       echo "Hubo un problema al actualizar los datos";
-      header("Refresh:3; url=index.php");
+      header("Refresh:3; url=menu.php");
    }
 }
 

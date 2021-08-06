@@ -14,19 +14,18 @@ function validarUsuario(e){
       peticion.open('POST','validar.php');
       peticion.setRequestHeader('Content-type','application/x-www-form-urlencoded');
       peticion.send(variables);
-      e.preventDefault();
    }else{
       alert("Ingrese los datos de forma correcta");
-      e.preventDefault();
    }
 
    function comprobarUsuario(){
       if(peticion.readyState == 4){
          if(peticion.status == 200){
             if(peticion.responseText == 'true'){
-               window.location.href = 'validarUsuario.php';
+               localStorage.setItem('user',document.getElementById('usuario').value);
+               window.location.href = 'menu.php';
             }else{
-               alert("Ese usuario no existe");
+               alert("Las credenciales son incorrectas");
                return false;
             }
          }

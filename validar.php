@@ -2,9 +2,6 @@
 
 require_once 'auxiliares/Consultas.php';
 
-// $_POST['usuario'] = 'antonio';
-// $_POST['pass'] = '4881245';
-
 if(isset($_POST)){
    $usuario = $_POST['usuario'];
    $pass = $_POST['pass'];

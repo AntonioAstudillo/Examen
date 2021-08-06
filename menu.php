@@ -35,6 +35,7 @@ if(!$resultEmpleados && !$resultEmpresas && !$resultDepartamento){
       <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
       <link rel="stylesheet" href="css/estilos.css">
+      <script src="js/comprobarSesion.js" charset="utf-8"></script>
    </head>
    <body>
       <!-- AQUI IRA EL BUSCADOR -->
@@ -45,7 +46,11 @@ if(!$resultEmpleados && !$resultEmpresas && !$resultDepartamento){
                <p class="text-white font-weight-bold logo"><a href="menu.php">Examen</a>   </p>
             </div>
 
-            <div class="row p-0 mt-2 d-flex justify-content-end aling-items-baseline">
+            <div class="p-0 mt-3">
+               <p class="text-white font-weight-bold">Usuario:<script> document.write(localStorage.user)</script></p>
+            </div>
+
+            <div class="row p-0 mt-2 d-flex justify-content-center aling-items-baseline">
                <div class="col-5 p-0 mr-1">
                   <select id="opcionBusqueda" class="form-control" name="">
                      <option value="opcion">Elige una Opción</option>
@@ -59,8 +64,12 @@ if(!$resultEmpleados && !$resultEmpresas && !$resultDepartamento){
                   <input class="form-control" type="text" id="buscadorText" placeholder="Buscar...">
                </div>
 
-               <div class="col-3 p-0 mr-1">
-                  <button class="btn btn-primary" type="button" name="button" id="buscador"><i class="fas fa-search"></i></button>
+               <div class="col-1 p-0 mr-2">
+                  <button title="Buscar Usuario" class="btn btn-primary" type="button" name="button" id="buscador"><i class="fas fa-search"></i></button>
+               </div>
+
+               <div class="col-2 p-0">
+                  <button title="Cerrar Sesión" class="btn btn-danger" type="button" name="button" id="cerrar"><i class="fas fa-sign-out-alt"></i></button>
                </div>
             </div>
          </div>
@@ -173,5 +182,6 @@ if(!$resultEmpleados && !$resultEmpresas && !$resultDepartamento){
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
       <script src="js/script.js" charset="utf-8"></script>
+      <script src="js/cerrarSesion.js" charset="utf-8"></script>
    </body>
 </html>

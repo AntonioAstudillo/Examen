@@ -16,4 +16,4 @@ Referente a la búsqueda por nombre, quieren que si buscan con la letra 'C', com
 pueda encontrar todos los empleados que tengan una c en su nombre
 
 
-<img src="img/examen.PNG" alt = "Examen de Catfor">
+[![examen.png](https://i.postimg.cc/5ySfFdtb/examen.png)](https://postimg.cc/5QyhZrvR)

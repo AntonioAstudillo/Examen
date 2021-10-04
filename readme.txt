@@ -13,4 +13,7 @@ El sistema a desarrollar, debera poder mostrar todos los empleados con los sigui
 *POR Departamento
 *POR Nombre
 Referente a la búsqueda por nombre, quieren que si buscan con la letra 'C', como caso no sensible
-pueda encontrar todos los empleados que tengan una c en su nombre 
+pueda encontrar todos los empleados que tengan una c en su nombre
+
+
+<img src="img/examen.PNG" alt = "Examen de Catfor">

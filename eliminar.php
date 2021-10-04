@@ -5,7 +5,6 @@ require_once 'auxiliares/Consultas.php';
 
 $id = $_POST['id'];
 
-
 $obj = new Consultas();
 
 if($obj->eliminarEmpleado($id)){

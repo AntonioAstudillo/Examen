@@ -15,5 +15,8 @@ El sistema a desarrollar, debera poder mostrar todos los empleados con los sigui
 Referente a la búsqueda por nombre, quieren que si buscan con la letra 'C', como caso no sensible
 pueda encontrar todos los empleados que tengan una c en su nombre
 
+[![examen1.png](https://i.postimg.cc/GtHxH59r/examen1.png)](https://postimg.cc/m1WHnVQ6)
 
 [![examen.png](https://i.postimg.cc/5ySfFdtb/examen.png)](https://postimg.cc/5QyhZrvR)
+
+[![examen2.png](https://i.postimg.cc/VsVF3mHN/examen2.png)](https://postimg.cc/LhjfPKSd)
